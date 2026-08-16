@@ -19,7 +19,7 @@ function App() {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/events");
+      const res = await fetch("/api/events");
       const data = await res.json();
       setEvents(data);
     } catch (err) {
@@ -29,7 +29,7 @@ function App() {
 
   const handleAddEvent = async (newEvent) => {
     try {
-      const res = await fetch("http://localhost:5000/api/events", {
+      const res = await fetch("/api/events", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newEvent),
@@ -45,7 +45,7 @@ function App() {
 
   const handleDeleteEvent = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/events/${id}`, {
+      const res = await fetch(`/api/events${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
