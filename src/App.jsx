@@ -45,11 +45,14 @@ function App() {
 
   const handleDeleteEvent = async (id) => {
     try {
-      const res = await fetch(`/api/events${id}`, {
+      const res = await fetch(`/api/events/${id}`, {
         method: "DELETE",
       });
+
       if (res.ok) {
-        setEvents(events.filter((evt) => evt._id !== id));
+        setEvents((prevEvents) => prevEvents.filter((evt) => evt._id !== id));
+      } else {
+        console.error("Failed to delete event, server status:", res.status);
       }
     } catch (err) {
       console.error("Failed to delete event:", err);

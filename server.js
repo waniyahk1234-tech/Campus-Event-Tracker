@@ -28,7 +28,6 @@ mongoose
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Auth Routes
 app.post("/api/auth/register", async (req, res) => {
   try {
     const { username, password, role } = req.body;
@@ -59,7 +58,6 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// Event Routes
 app.get("/api/events", async (req, res) => {
   try {
     const events = await Event.find().sort({ createdAt: -1 });
@@ -81,12 +79,10 @@ app.post("/api/events", async (req, res) => {
 
 app.delete("/api/events/:id", async (req, res) => {
   try {
-    const deletedEvent = await Event.findByIdAndDelete(req.params.id);
-    if (!deletedEvent) {
-      return res.status(404).json({ error: "Event not found" });
-    }
-    res.json({ message: "Event deleted successfully" });
-  } catch (err) {
+    const { id } = req.params;
+    await Event.findByIdAndDelete(id);
+    res.status(200).json({ message: "Event deleted successfully" });
+  } catch (error) {
     res.status(500).json({ error: "Failed to delete event" });
   }
 });
