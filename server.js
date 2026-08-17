@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Event from "./event/Event.js";
 
-require("dotenv").config();
+dotenv.config();
 const dbURI = process.env.MONGODB_URI;
 
 const app = express();
