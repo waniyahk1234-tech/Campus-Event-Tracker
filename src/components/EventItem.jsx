@@ -30,14 +30,15 @@ function EventItem({ event, onDeleteEvent, currentUser }) {
 
         <div className="text-xs text-gray-600 space-y-1.5">
           <p className="flex items-center">
-            <span className="font-semibold text-gray-700">Date:</span>
-            <p>
-              <strong></strong>{" "}
+            <span className="font-semibold text-gray-700">
+              <strong>Date:</strong>{" "}
               {new Date(event.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
+            </span>
+            <p>
             </p>
           </p>
           <p className="flex items-center gap-2">
